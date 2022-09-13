@@ -21,11 +21,11 @@ function uploadVideo(e){
   
   const c_options = {
     method: 'POST',
-    url: 'https://video.bunnycdn.com/library/49034/videos',
+    url: 'https://video.bunnycdn.com/library/59740/videos',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/*+json',
-      AccessKey: ''
+      AccessKey: settings.BUNNY_API_KEY
     },
     data: '{"title":"test"}'
   };
@@ -34,10 +34,10 @@ function uploadVideo(e){
     //upload start
     const u_options = {
       method: 'PUT',
-      url: `https://video.bunnycdn.com/library/49034/videos/${c_response.data.guid}`,
+      url: `https://video.bunnycdn.com/library/59740/videos/${c_response.data.guid}`,
       headers: {
         Accept: 'application/json',
-        AccessKey: ''
+        AccessKey: settings.BUNNY_API_KEY
       },
       data: video,
     };
