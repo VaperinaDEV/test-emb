@@ -34,7 +34,7 @@ function uploadVideo() {
       });
     });
   };
-}
+};
 
 export default {
   name: "video-compressor",
