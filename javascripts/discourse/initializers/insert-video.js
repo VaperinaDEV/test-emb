@@ -27,14 +27,14 @@ function uploadVideo() {
         headers: {
           Accept: "application/json",
           AccessKey: settings.BUNNY_API_KEY,
-        },
+        }
       };
       $.ajax(optionsToUploadVideo).done(function (response) {
         console.log(response);
       });
     });
   };
-};
+}
 
 export default {
   name: "video-compressor",
