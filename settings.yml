@@ -1,2 +1,4 @@
-coconut_api_key:
+VIDEO_LIBRARY_ID:
+  default: ""
+BUNNY_API_KEY:
   default: ""
