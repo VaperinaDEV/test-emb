@@ -14,7 +14,7 @@ export const uploadVideo = async (req, res) => {
     data: JSON.stringify({ title: file.name }),
   };
 
-  await fetch(optionsToCreateVideo)
+  const response = await fetch(optionsToCreateVideo);
   .then((response) => {
     const video_id = response.data.guid;
 
