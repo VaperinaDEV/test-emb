@@ -14,9 +14,10 @@ function uploadVideo() {
     data: JSON.stringify({ title: "valami" }),
   };
   
-  await $.ajax(optionsToCreateVideo).then((response) => {
+  $.ajax(optionsToCreateVideo) {
     console.log(response);
     const video_id = response.data.guid;
+    .then((response) => {
     const optionsToUploadVideo = {
       async: true,
       crossDomain: true,
@@ -31,6 +32,7 @@ function uploadVideo() {
       console.log(response);
     });
   });
+  };
 };
 
 export default {
