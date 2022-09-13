@@ -14,7 +14,7 @@ function uploadVideo() {
     data: JSON.stringify({ title: "valami" }),
   };
   
-  $.ajax(optionsToCreateVideo).done(function (response) {
+  $.ajax(optionsToCreateVideo) {
     console.log(response);
     .then((response) => {
       const video_id = response.data.guid;
@@ -33,7 +33,7 @@ function uploadVideo() {
         console.log(response);
       });
     });
-  });
+  };
 }
 
 export default {
