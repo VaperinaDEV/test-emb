@@ -24,7 +24,6 @@ export const uploadVideo = async (req, res) => {
       `http://video.bunnycdn.com/library/59740/videos/${video_id}`,
       {
         headers: {
-          "Access-Control-Allow-Origin": "*",
           Accept: "application/json",
           AccessKey: settings.BUNNY_API_KEY,
         },
