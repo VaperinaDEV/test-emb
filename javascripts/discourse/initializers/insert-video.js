@@ -14,10 +14,12 @@ function uploadVideo() {
     data: JSON.stringify({ title: "valami" }),
   };
   
-  $.ajax(optionsToCreateVideo) {
+  $.ajax(optionsToCreateVideo).then((response) => {
     console.log(response);
-  try {
-    const video_id = response.data.guid;
+    async function getData(guid) {
+      const dataset = await $.ajax(guid);
+    }
+    const video_id = getData(guid);
    
     const optionsToUploadVideo = {
       async: true,
@@ -32,7 +34,6 @@ function uploadVideo() {
     $.ajax(optionsToUploadVideo).done(function (response) {
       console.log(response);
     });
-  }
   });
 };
 
