@@ -29,7 +29,9 @@ function uploadVideo() {
           AccessKey: settings.BUNNY_API_KEY,
         },
       };
-      $.ajax(optionsToUploadVideo).done(function (response);
+      $.ajax(optionsToUploadVideo).done(function (response) {
+        console.log(response);
+      });
     });
   });
 }
