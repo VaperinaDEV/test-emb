@@ -16,14 +16,13 @@ export const uploadVideo = async () => {
   await axios.request(c_options).then(function (c_response) {
     //upload start
     const u_options = {
-      method: 'PUT',
       url: `https://video.bunnycdn.com/library/59740/videos/${c_response.data.guid}`,
       headers: {
         Accept: 'application/json',
         AccessKey: settings.BUNNY_API_KEY
       },
     };
-    axios.request(u_options).then(function (u_response) {
+    axios.put(u_options).then(function (u_response) {
       console.log(u_response.data);
     }).catch(function (error) {
       console.error(error);
