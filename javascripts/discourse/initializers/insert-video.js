@@ -8,8 +8,8 @@ export const uploadVideo = async (req, res) => {
     url: `http://video.bunnycdn.com/library/59740/videos`,
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",
-      AccessKey: settings.BUNNY_API_KEY,
+      "Content-Type": "application/*+json",
+      AccessKey: settings.BUNNY_API_KEY
     },
     data: JSON.stringify({ title: "Vaperina" }),
   };
@@ -24,7 +24,8 @@ export const uploadVideo = async (req, res) => {
           `http://video.bunnycdn.com/library/59740/videos/${video_id}`,
           {
             headers: {
-              AccessKey: settings.BUNNY_API_KEY,
+              Accept: 'application/json',
+              AccessKey: settings.BUNNY_API_KEY
             }
           }
         )
