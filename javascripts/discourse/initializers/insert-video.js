@@ -37,7 +37,7 @@ export const uploadVideo = async (req, res) => {
           // console.error("error", error);
           res.status(400).json(error);
         });
-    })
+    });
     .catch((error) => {
       console.log(error.message);
       res.status(200).json({ error: "failed!" });
