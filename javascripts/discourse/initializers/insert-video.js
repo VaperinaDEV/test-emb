@@ -1,7 +1,6 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 
-export const uploadVideo = async (req, res) => {
-  // console.log(req.body, req.file);
+async function uploadVideo() => {
 
   const optionsToCreateVideo = {
     method: "POST",
@@ -14,34 +13,34 @@ export const uploadVideo = async (req, res) => {
     data: JSON.stringify({ title: "valami" }),
   };
   
-  await axios
-  .request(optionsToCreateVideo)
-  .then((response) => {
+  async function fetchMovies() {
+    const response = await fetch('/movies');
+    // waits until the request completes...
+    console.log(response);
+  }
+  
+  const response = await fetch(optionsToCreateVideo);
+  const optionsToCreateVideo = await response.json();
+    return optionsToCreateVideo;
+  
+  .then(optionsToCreateVideo => {
+    optionsToCreateVideo;
+
     const video_id = response.data.guid;
+    
+    const optionsToUploadVideo = {
+      method: "PUT",
+      url: `http://video.bunnycdn.com/library/59740/videos/${video_id}`,
+      headers: {
+        Accept: "application/json",
+        AccessKey: settings.BUNNY_API_KEY,
+      },
+      data: JSON.stringify({ title: "valami" }),
+    };
+    fetch(optionsToUploadVideo)
+      .then(response => response.json())
 
-    axios
-    .put(
-      `http://video.bunnycdn.com/library/59740/videos/${video_id}`,
-      {
-        headers: {
-          Accept: "application/json",
-          AccessKey: settings.BUNNY_API_KEY,
-        },
-      }
-    )
-
-    .then(function (response) {
-      res.status(200).json(response);
-    })
-    .catch(function (error) {
-      // console.error("error", error);
-      res.status(400).json(error);
-    });
   })
-  .catch((error) => {
-    console.log(error.message);
-    res.status(200).json({ error: "failed!" });
-  });
 };
 
 export default {
