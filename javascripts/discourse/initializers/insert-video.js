@@ -13,7 +13,7 @@ function uploadVideo() {
     data: '{"title":"test"}'
   };
   
-  axios.request(c_options).then(function (c_response) {
+  await axios.request(c_options).then(function (c_response) {
     //upload start
     const u_options = {
       method: 'PUT',
@@ -23,7 +23,7 @@ function uploadVideo() {
         AccessKey: settings.BUNNY_API_KEY
       },
     };
-    await axios.request(u_options).then(function (u_response) {
+    axios.request(u_options).then(function (u_response) {
       console.log(u_response.data);
     }).catch(function (error) {
       console.error(error);
