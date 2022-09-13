@@ -25,10 +25,8 @@ async function uploadVideo() {
         Accept: "application/json",
         AccessKey: settings.BUNNY_API_KEY,
       },
-      data: JSON.stringify({ title: "valami" }),
     };
     fetch(optionsToUploadVideo)
-    .then(response => response.json())
   });
 }
 
