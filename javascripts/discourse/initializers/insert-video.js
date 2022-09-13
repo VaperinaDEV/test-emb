@@ -1,4 +1,5 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
+import Axios from "axios";
 
 export const uploadVideo = async (req, res) => {
   // console.log(req.body, req.file);
@@ -14,18 +15,21 @@ export const uploadVideo = async (req, res) => {
     data: JSON.stringify({ title: file.name }),
   };
 
-  const response = await fetch(optionsToCreateVideo);
+  await axios
+  .request(optionsToCreateVideo)
   .then((response) => {
     const video_id = response.data.guid;
-    const requestOptions = {
-      method: "PUT",
-      url: `http://video.bunnycdn.com/library/settings.59740/videos/${video_id}`,
+
+    axios
+    .put(
+      `http://video.bunnycdn.com/library/59740/videos/${video_id}`,
+      {
       headers: {
         AccessKey: settings.BUNNY_API_KEY,
       },
-      body: file.name,
-    };
-    fetch(requestOptions)
+        body: req.file ,
+      }
+    )
 
     .then(function (response) {
       res.status(200).json(response);
