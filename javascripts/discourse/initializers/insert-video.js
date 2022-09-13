@@ -1,6 +1,6 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 
-function uploadVideo() {
+async function uploadVideo() {
 
   const optionsToCreateVideo = {
     method: "POST",
