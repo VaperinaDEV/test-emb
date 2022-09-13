@@ -14,7 +14,6 @@ async function uploadVideo() {
   };
   
   const response = await fetch(optionsToCreateVideo);
-
   .then((response) => {
     const video_id = response.data.guid;
     
@@ -27,7 +26,7 @@ async function uploadVideo() {
       },
     };
     fetch(optionsToUploadVideo);
-  });
+  })
 }
 
 export default {
