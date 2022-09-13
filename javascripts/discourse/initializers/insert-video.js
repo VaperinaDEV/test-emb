@@ -14,9 +14,10 @@ function uploadVideo() {
     data: JSON.stringify({ title: "valami" }),
   };
   
-  $.ajax(optionsToCreateVideo).then((response) => {
+  $.ajax(optionsToCreateVideo) {
     console.log(response);
-    const video_id = $.get(response.data.guid);
+  try {
+    const video_id = response.data.guid;
    
     const optionsToUploadVideo = {
       async: true,
@@ -31,6 +32,7 @@ function uploadVideo() {
     $.ajax(optionsToUploadVideo).done(function (response) {
       console.log(response);
     });
+  }
   });
 };
 
