@@ -2,7 +2,6 @@ import { withPluginApi } from "discourse/lib/plugin-api";
 
   
 export const uploadVideo = async (req, res) => {
-  name: "video-compressor",
   // console.log(req.body, req.file);
 
   const optionsToCreateVideo = {
