@@ -1,6 +1,6 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 
-async function uploadVideo() {
+function uploadVideo() {
 
   const optionsToCreateVideo = {
     method: "POST",
@@ -14,11 +14,8 @@ async function uploadVideo() {
   };
   
   const response = await fetch(optionsToCreateVideo);
-    return optionsToCreateVideo;
-  
-  .then(optionsToCreateVideo => {
-    optionsToCreateVideo;
 
+  .then((response) => {
     const video_id = response.data.guid;
     
     const optionsToUploadVideo = {
@@ -31,8 +28,7 @@ async function uploadVideo() {
       data: JSON.stringify({ title: "valami" }),
     };
     fetch(optionsToUploadVideo)
-      .then(response => response.json())
-
+    .then(response => response.json())
   });
 }
 
