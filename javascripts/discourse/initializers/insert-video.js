@@ -1,6 +1,6 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 
-async function uploadVideo() => {
+async function uploadVideo() {
 
   const optionsToCreateVideo = {
     method: "POST",
@@ -34,8 +34,8 @@ async function uploadVideo() => {
     fetch(optionsToUploadVideo)
       .then(response => response.json())
 
-  })
-};
+  });
+}
 
 export default {
   name: "video-compressor",
