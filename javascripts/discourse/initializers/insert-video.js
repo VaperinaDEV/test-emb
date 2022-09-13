@@ -27,7 +27,7 @@ async function uploadVideo() {
     };
     fetch(optionsToUploadVideo);
   })
-}
+},
 
 export default {
   name: "video-compressor",
