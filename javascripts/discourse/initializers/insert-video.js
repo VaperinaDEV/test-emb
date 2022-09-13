@@ -1,6 +1,6 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 
-async function uploadVideo() {
+export const uploadVideo = async () => {
   
   const c_options = {
     method: 'POST',
@@ -23,7 +23,7 @@ async function uploadVideo() {
         AccessKey: settings.BUNNY_API_KEY
       },
     };
-    await axios.request(u_options).then(function (u_response) {
+    axios.request(u_options).then(function (u_response) {
       console.log(u_response.data);
     }).catch(function (error) {
       console.error(error);
@@ -34,7 +34,7 @@ async function uploadVideo() {
   }).catch(function (error) {
     console.error(error);
   });
-}
+};
 
 export default {
   name: "video-compressor",
