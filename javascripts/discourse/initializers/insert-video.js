@@ -14,27 +14,25 @@ function uploadVideo() {
     data: JSON.stringify({ title: "valami" }),
   };
   
-  $.ajax(optionsToCreateVideo) {
+  $.ajax(optionsToCreateVideo).then((response) => {
     console.log(response);
-    .then((response) => {
-      const video_id = response.data.guid;
+    const video_id = response.data.guid;
     
-      const optionsToUploadVideo = {
-        async: true,
-        crossDomain: true,
-        method: "PUT",
-        url: `http://video.bunnycdn.com/library/59740/videos/${video_id}`,
-        headers: {
-          Accept: "application/json",
-          AccessKey: settings.BUNNY_API_KEY,
-        }
-      };
-      $.ajax(optionsToUploadVideo).done(function (response) {
-        console.log(response);
-      });
+    const optionsToUploadVideo = {
+      async: true,
+      crossDomain: true,
+      method: "PUT",
+      url: `http://video.bunnycdn.com/library/59740/videos/${video_id}`,
+      headers: {
+        Accept: "application/json",
+        AccessKey: settings.BUNNY_API_KEY,
+      }
+    };
+    $.ajax(optionsToUploadVideo).done(function (response) {
+      console.log(response);
     });
-  };
-}
+  });
+};
 
 export default {
   name: "video-compressor",
