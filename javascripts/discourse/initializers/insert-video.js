@@ -11,7 +11,7 @@ export const uploadVideo = async (req, res) => {
       "Content-Type": "application/json",
       AccessKey: settings.BUNNY_API_KEY,
     },
-    body: req.file,
+    body: '{"title":"gdggdg"}'
   };
   
   await axios
