@@ -36,13 +36,13 @@ import { withPluginApi } from "discourse/lib/plugin-api";
         .catch(function (error) {
           // console.error("error", error);
           res.status(400).json(error);
-        })
-    });
+        });
+    })
     .catch((error) => {
       console.log(error.message);
       res.status(200).json({ error: "failed!" });
     });
-  }
+  };
 
 export default {
   name: "video-compressor",
