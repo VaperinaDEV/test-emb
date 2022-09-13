@@ -1,48 +1,59 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 
-export const uploadVideo = async (req, res) => {
-  // console.log(req.body, req.file);
+function uploadVideo(e){
+  const data = new FormData();
+  let file = e.target.files[0];
+  let video;
+  const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+  
+  async function Main() {
+    video = await toBase64(file);
+  }
+  
+  Main();
 
-  const optionsToCreateVideo = {
-    method: "POST",
-    url: `http://video.bunnycdn.com/library/59740/videos`,
+
+  
+  const c_options = {
+    method: 'POST',
+    url: 'https://video.bunnycdn.com/library/49034/videos',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/*+json",
-      AccessKey: settings.BUNNY_API_KEY
+      Accept: 'application/json',
+      'Content-Type': 'application/*+json',
+      AccessKey: ''
     },
-    data: JSON.stringify({ title: "Vaperina" }),
+    data: '{"title":"test"}'
   };
-
-  await axios
-    .request(optionsToCreateVideo)
-    .then((response) => {
-      const video_id = response.data.guid;
-
-      axios
-        .put(
-          `http://video.bunnycdn.com/library/59740/videos/${video_id}`,
-          {
-            headers: {
-              Accept: 'application/json',
-              "Content-Type": "application/octet-stream",
-              AccessKey: settings.BUNNY_API_KEY
-            }
-          }
-        )
-        .then(function (response) {
-          res.status(200).json(response);
-        })
-        .catch(function (error) {
-          // console.error("error", error);
-          res.status(400).json(error);
-        });
-    })
-    .catch((error) => {
-      console.log(error.message);
-      res.status(200).json({ error: "failed!" });
+  
+  axios.request(c_options).then(function (c_response) {
+    //upload start
+    const u_options = {
+      method: 'PUT',
+      url: `https://video.bunnycdn.com/library/49034/videos/${c_response.data.guid}`,
+      headers: {
+        Accept: 'application/json',
+        AccessKey: ''
+      },
+      data: video,
+    };
+    axios.request(u_options).then(function (u_response) {
+      //post url to php
+      console.log(u_response.data);
+    }).catch(function (error) {
+      console.error(error);
     });
-};
+    //upload end
+
+    console.log(c_response.data);
+  }).catch(function (error) {
+    console.error(error);
+  });
+}
 
 export default {
   name: "video-compressor",
