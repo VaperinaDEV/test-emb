@@ -5,7 +5,7 @@ export const uploadVideo = async (req, res) => {
 
   const optionsToCreateVideo = {
     method: "POST",
-    url: `http://video.bunnycdn.com/library/settings.VIDEO_LIBRARY_ID/videos`,
+    url: `http://video.bunnycdn.com/library/59740/videos`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -20,7 +20,7 @@ export const uploadVideo = async (req, res) => {
 
     fetch
     .put(
-      `http://video.bunnycdn.com/library/settings.VIDEO_LIBRARY_ID/videos/${video_id}`,
+      `http://video.bunnycdn.com/library/settings.59740/videos/${video_id}`,
       {
         headers: {
           AccessKey: settings.BUNNY_API_KEY,
