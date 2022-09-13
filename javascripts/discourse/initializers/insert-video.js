@@ -1,7 +1,7 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 
 
-  function uploadVideo = async (req, res) => {
+  export const uploadVideo = async (req, res) => {
     // console.log(req.body, req.file);
 
     const optionsToCreateVideo = {
@@ -42,7 +42,7 @@ import { withPluginApi } from "discourse/lib/plugin-api";
       console.log(error.message);
       res.status(200).json({ error: "failed!" });
     });
-  };
+  }
 
 export default {
   name: "video-compressor",
