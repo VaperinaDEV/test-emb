@@ -23,7 +23,7 @@ function uploadVideo() {
         AccessKey: settings.BUNNY_API_KEY
       },
     };
-    axios.request(u_options).then(function (u_response) {
+    await axios.request(u_options).then(function (u_response) {
       console.log(u_response.data);
     }).catch(function (error) {
       console.error(error);
