@@ -7,7 +7,7 @@ export const uploadVideo = async (req, res) => {
     method: "POST",
     url: `http://video.bunnycdn.com/library/59740/videos`,
     headers: {
-      Accept: "application/json",
+      Accept: "application/*+json",
       "Content-Type": "application/json",
       AccessKey: settings.BUNNY_API_KEY,
     },
@@ -24,6 +24,7 @@ export const uploadVideo = async (req, res) => {
       `http://video.bunnycdn.com/library/59740/videos/${video_id}`,
       {
         headers: {
+          Accept: "application/json",
           AccessKey: settings.BUNNY_API_KEY,
         },
       }
