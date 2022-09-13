@@ -1,8 +1,9 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 
-async function uploadVideo() {
-
+function uploadVideo() {
   const optionsToCreateVideo = {
+    async: true,
+    crossDomain: true,
     method: "POST",
     url: `http://video.bunnycdn.com/library/59740/videos`,
     headers: {
@@ -13,21 +14,25 @@ async function uploadVideo() {
     data: JSON.stringify({ title: "valami" }),
   };
   
-  const response = await fetch(optionsToCreateVideo);
-  .then((response) => {
-    const video_id = response.data.guid;
+  $.ajax(optionsToCreateVideo).done(function (response) {
+    console.log(response);
+    .then((response) => {
+      const video_id = response.data.guid;
     
-    const optionsToUploadVideo = {
-      method: "PUT",
-      url: `http://video.bunnycdn.com/library/59740/videos/${video_id}`,
-      headers: {
-        Accept: "application/json",
-        AccessKey: settings.BUNNY_API_KEY,
-      },
-    };
-    fetch(optionsToUploadVideo);
-  })
-},
+      const optionsToUploadVideo = {
+        async: true,
+        crossDomain: true,
+        method: "PUT",
+        url: `http://video.bunnycdn.com/library/59740/videos/${video_id}`,
+        headers: {
+          Accept: "application/json",
+          AccessKey: settings.BUNNY_API_KEY,
+        },
+      };
+      $.ajax(optionsToUploadVideo).done(function (response);
+    });
+  });
+}
 
 export default {
   name: "video-compressor",
