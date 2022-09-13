@@ -1,5 +1,4 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
-import Axios from "axios";
 
 export const uploadVideo = async (req, res) => {
   // console.log(req.body, req.file);
