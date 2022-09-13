@@ -1,23 +1,6 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 
-function uploadVideo(e){
-  const data = new FormData();
-  let file = e.target.files[0];
-  let video;
-  const toBase64 = file => new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
-  });
-  
-  async function Main() {
-    video = await toBase64(file);
-  }
-  
-  Main();
-
-
+function uploadVideo(e) {
   
   const c_options = {
     method: 'POST',
@@ -39,7 +22,6 @@ function uploadVideo(e){
         Accept: 'application/json',
         AccessKey: settings.BUNNY_API_KEY
       },
-      data: video,
     };
     axios.request(u_options).then(function (u_response) {
       //post url to php
