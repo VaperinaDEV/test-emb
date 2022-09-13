@@ -15,19 +15,19 @@ export const uploadVideo = async (req, res) => {
   };
 
   const response = await fetch(optionsToCreateVideo);
-  .then((response) => {
+  const optionsToCreateVideo = await response.json();
+  .then((optionsToCreateVideo) => {
     const video_id = response.data.guid;
+    const requestOptions = {
+      method: "PUT",
+      url: `http://video.bunnycdn.com/library/settings.59740/videos/${video_id}`,
+      headers: {
+        AccessKey: settings.BUNNY_API_KEY,
+      },
+      body: file.name,
+    };
+    fetch(requestOptions)
 
-    fetch
-    .put(
-      `http://video.bunnycdn.com/library/settings.59740/videos/${video_id}`,
-      {
-        headers: {
-          AccessKey: settings.BUNNY_API_KEY,
-        },
-        body: file.name,
-      }
-    )
     .then(function (response) {
       res.status(200).json(response);
     })
