@@ -14,9 +14,9 @@ function uploadVideo() {
     data: JSON.stringify({ title: "valami" }),
   };
   
-  $.ajax(optionsToCreateVideo).then((response) => {
+  await $.ajax(optionsToCreateVideo).then((response) => {
     console.log(response);
-    let video_id = response.data.guid;
+    const video_id = response.data.guid;
     const optionsToUploadVideo = {
       async: true,
       crossDomain: true,
