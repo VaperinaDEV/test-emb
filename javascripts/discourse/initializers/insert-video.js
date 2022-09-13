@@ -16,8 +16,10 @@ function uploadVideo() {
   
   $.ajax(optionsToCreateVideo).then((response) => {
     console.log(response);
-    const video_id = response.guid;
-    
+    const video_id {
+      $.get(response.data.guid);
+    };
+   
     const optionsToUploadVideo = {
       async: true,
       crossDomain: true,
