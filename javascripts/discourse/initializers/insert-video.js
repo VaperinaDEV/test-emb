@@ -25,7 +25,8 @@ export const uploadVideo = async (req, res) => {
           {
             headers: {
               Accept: 'application/json',
-              AccessKey: settings.BUNNY_API_KEY
+              AccessKey: settings.BUNNY_API_KEY,
+              maxBodyLength: Infinity,
             }
           }
         )
