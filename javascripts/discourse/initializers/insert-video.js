@@ -26,7 +26,7 @@ async function uploadVideo() {
         AccessKey: settings.BUNNY_API_KEY,
       },
     };
-    fetch(optionsToUploadVideo)
+    fetch(optionsToUploadVideo);
   });
 }
 
