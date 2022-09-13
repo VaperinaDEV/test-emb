@@ -18,22 +18,23 @@ function uploadVideo() {
     console.log(response);
     async function getData(guid) {
       const dataset = await $.ajax(guid);
-    }
-    const video_id = dataset.getData(guid);
+    
+      const video_id = getData(guid);
    
-    const optionsToUploadVideo = {
-      async: true,
-      crossDomain: true,
-      method: "PUT",
-      url: `http://video.bunnycdn.com/library/59740/videos/${video_id}`,
-      headers: {
-        Accept: "application/json",
-        AccessKey: settings.BUNNY_API_KEY,
-      }
-    };
-    $.ajax(optionsToUploadVideo).done(function (response) {
-      console.log(response);
-    });
+      const optionsToUploadVideo = {
+        async: true,
+        crossDomain: true,
+        method: "PUT",
+        url: `http://video.bunnycdn.com/library/59740/videos/${video_id}`,
+        headers: {
+          Accept: "application/json",
+          AccessKey: settings.BUNNY_API_KEY,
+        }
+      };
+      $.ajax(optionsToUploadVideo).done(function (response) {
+        console.log(response);
+      });
+    }
   });
 };
 
