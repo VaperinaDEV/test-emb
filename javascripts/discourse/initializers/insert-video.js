@@ -13,7 +13,7 @@ function uploadVideo() {
     data: '{"title":"test"}'
   };
   
-  await axios.request(c_options).then(function (c_response) {
+  axios.request(c_options).then(function (c_response) {
     //upload start
     const u_options = {
       method: 'PUT',
