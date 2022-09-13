@@ -1,6 +1,6 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 
-function uploadVideo() {
+function createVideo() {
   const optionsToCreateVideo = {
     async: true,
     crossDomain: true,
@@ -13,11 +13,13 @@ function uploadVideo() {
     },
     data: JSON.stringify({ title: "valami" }),
   };
+},
   
-  $.ajax(optionsToCreateVideo) {
+async function uploadVideo() {
+  $.ajax(optionsToCreateVideo).then((response) => {
     console.log(response);
     const video_id = response.data.guid;
-    .then((response) => {
+    
     const optionsToUploadVideo = {
       async: true,
       crossDomain: true,
@@ -32,8 +34,7 @@ function uploadVideo() {
       console.log(response);
     });
   });
-  };
-};
+}
 
 export default {
   name: "video-compressor",
@@ -43,6 +44,7 @@ export default {
       api.addComposerUploadHandler(["mp4", "mov"], (files, editor) => {
         files.forEach((file) => {
           console.log("Handling upload for", file.name);
+          createVideo();
           uploadVideo();
         });
       })
