@@ -14,12 +14,12 @@ export const uploadVideo = async (req, res) => {
     data: JSON.stringify({ title: file.name }),
   };
 
-  await axios
+  await fetch
   .request(optionsToCreateVideo)
   .then((response) => {
     const video_id = response.data.guid;
 
-    axios
+    fetch
     .put(
       `http://video.bunnycdn.com/library/${settings.VIDEO_LIBRARY_ID}/videos/${video_id}`,
       {
