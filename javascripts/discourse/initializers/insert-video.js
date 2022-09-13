@@ -13,12 +13,6 @@ async function uploadVideo() => {
     data: JSON.stringify({ title: "valami" }),
   };
   
-  async function fetchMovies() {
-    const response = await fetch('/movies');
-    // waits until the request completes...
-    console.log(response);
-  }
-  
   const response = await fetch(optionsToCreateVideo);
   const optionsToCreateVideo = await response.json();
     return optionsToCreateVideo;
