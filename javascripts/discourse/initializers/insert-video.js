@@ -19,7 +19,7 @@ function uploadVideo() {
     async function getData(guid) {
       const dataset = await $.ajax(guid);
     }
-    const video_id = getData(guid);
+    const video_id = dataset.getData(guid);
    
     const optionsToUploadVideo = {
       async: true,
