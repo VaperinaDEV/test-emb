@@ -15,8 +15,7 @@ export const uploadVideo = async (req, res) => {
   };
 
   const response = await fetch(optionsToCreateVideo);
-  const optionsToCreateVideo = await response.json();
-  .then((optionsToCreateVideo) => {
+  .then((response) => {
     const video_id = response.data.guid;
     const requestOptions = {
       method: "PUT",
