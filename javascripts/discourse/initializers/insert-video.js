@@ -14,7 +14,6 @@ async function uploadVideo() {
   };
   
   const response = await fetch(optionsToCreateVideo);
-  const optionsToCreateVideo = await response.json();
     return optionsToCreateVideo;
   
   .then(optionsToCreateVideo => {
