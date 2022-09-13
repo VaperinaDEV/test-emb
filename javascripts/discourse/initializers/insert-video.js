@@ -23,10 +23,11 @@ export const uploadVideo = async (req, res) => {
     .put(
       `http://video.bunnycdn.com/library/59740/videos/${video_id}`,
       {
-      headers: {
-        AccessKey: settings.BUNNY_API_KEY,
-      },
-      body: req.file,
+        headers: {
+          AccessKey: settings.BUNNY_API_KEY,
+        },
+        body: req.file,
+      }
     )
 
     .then(function (response) {
