@@ -1,6 +1,6 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 
-function uploadVideo(e) {
+function uploadVideo() {
   
   const c_options = {
     method: 'POST',
@@ -24,7 +24,6 @@ function uploadVideo(e) {
       },
     };
     axios.request(u_options).then(function (u_response) {
-      //post url to php
       console.log(u_response.data);
     }).catch(function (error) {
       console.error(error);
