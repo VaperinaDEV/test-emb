@@ -4,7 +4,7 @@ import UppyMediaOptimization from "discourse/lib/uppy-media-optimization-plugin"
 
 function videoCompress() { 
     var uppy = window.Robodog.pick({
-      waitForEncoding: true,
+      waitForEncoding: false,
       params: {
         // To avoid tampering, use Signature Authentication
         auth: { key: settings.TRANSLOADIT_API_KEY },
@@ -38,17 +38,11 @@ export default {
 
   initialize() {
     withPluginApi("0.8.31", api => {
-      api.addComposerUploadPreProcessor(UppyMediaOptimization, ({ composerModel, composerElement, capabilities, isMobileDevice }) => {
-        return {
-          composerModel,
-          composerElement,
-          capabilities,
-          isMobileDevice,
-          someOption: true,
-          someFn: () => {
-            videoCompress();
-          },
-        };
+      api.addComposerUploadHandler(["mp4", "mov"], (files, editor) => {
+        files.forEach((file) => {
+          console.log("Handling upload for", file.name);
+          videoCompress();
+        });
       });
     });
   }
