@@ -19,12 +19,6 @@ function videoCompress() {
             ffmpeg_stack: 'v4.3.1',
             preset: 'webm',
             turbo: false
-          },
-          exported: {
-            use: ['webm_encoded', ':original'],
-            robot: '/s3/store',
-            credentials: 'YOUR_AWS_CREDENTIALS',
-            url_prefix: 'https://demos.transloadit.com/'
           }
         }
       }
