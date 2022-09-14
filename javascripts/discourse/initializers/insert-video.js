@@ -1,41 +1,34 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 
-export const uploadVideo = async () => {
-  
-  await axios.post(
-    `https://video.bunnycdn.com/library/59740/videos`,
-    {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/*+json',
-        AccessKey: settings.BUNNY_API_KEY
+
+function videoCompress() { 
+  .transloadit({
+    wait: true,
+    triggerUploadOnFileSelection: true,
+    params: {
+      auth: {
+      // To avoid tampering use signatures:
+      // https://transloadit.com/docs/api/#authentication
+        key: settings.TRANSLOADIT_API_KEY,
       },
-      data: '{"title":"test"}'
-    }
-    )
-    .then(function (c_response) {
-      //upload start
-      axios.put(
-        `https://video.bunnycdn.com/library/59740/videos/${c_response.data.guid}`,
-      {
-        headers: {
-          Accept: 'application/json',
-          AccessKey: settings.BUNNY_API_KEY
+      // It's often better store encoding instructions in your account
+      // and use a `template_id` instead of adding these steps inline
+      steps: {
+        ':original': {
+          robot: '/upload/handle'
+        },
+        webm_encoded: {
+          use: ':original',
+          robot: '/video/encode',
+          result: true,
+          ffmpeg_stack: 'v4.3.1',
+          preset: 'webm',
+          turbo: false
         }
       }
-      )
-      .then(function (u_response) {
-        console.log(u_response.data);
-      }).catch(function (error) {
-        console.error(error);
-      });
-      //upload end
-
-      console.log(c_response.data);
-    }).catch(function (error) {
-      console.error(error);
-    });
-  };
+    }
+  });
+}
 
 export default {
   name: "video-compressor",
