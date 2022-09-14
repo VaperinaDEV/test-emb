@@ -37,12 +37,13 @@ export default {
 
   initialize() {
     withPluginApi("0.8.31", api => {
+
       api.addComposerUploadHandler(["mp4", "mov"], (files, editor) => {
         files.forEach((file) => {
           console.log("Handling upload for", file.name);
           videoCompress();
         });
-      })
+      });
     });
   }
 };
