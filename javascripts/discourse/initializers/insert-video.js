@@ -1,18 +1,13 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
-import UppyMediaOptimization from "discourse/lib/uppy-media-optimization-plugin";
-
 
 function videoCompress() { 
     var uppy = window.Robodog.pick({
-      waitForEncoding: false,
+      waitForEncoding: true,
       params: {
         // To avoid tampering, use Signature Authentication
         auth: { key: settings.TRANSLOADIT_API_KEY },
         // To hide your `steps`, use a `template_id` instead
         steps: {
-          ':original': {
-            robot: '/upload/handle'
-          },
           webm_encoded: {
             use: ':original',
             robot: '/video/encode',
