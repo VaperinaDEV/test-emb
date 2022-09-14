@@ -13,9 +13,9 @@ export const uploadVideo = async () => {
     data: '{"title":"test"}'
   };
   
-  await axios.request(c_options).then(function (c_response) {
+  axios.request(c_options).then(function (c_response) {
     //upload start
-    axios.put(
+   await axios.put(
       `https://video.bunnycdn.com/library/59740/videos/${c_response.data.guid}`,
     {
       headers: {
