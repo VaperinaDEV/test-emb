@@ -2,40 +2,40 @@ import { withPluginApi } from "discourse/lib/plugin-api";
 
 export const uploadVideo = async () => {
   
-  const c_options = {
-    method: 'POST',
-    url: 'https://video.bunnycdn.com/library/59740/videos',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/*+json',
-      AccessKey: settings.BUNNY_API_KEY
-    },
-    data: '{"title":"test"}'
-  };
-  
-  axios.request(c_options).then(function (c_response) {
-    //upload start
-   await axios.put(
-      `https://video.bunnycdn.com/library/59740/videos/${c_response.data.guid}`,
+  await axios.post(
+    `https://video.bunnycdn.com/library/59740/videos`,
     {
       headers: {
         Accept: 'application/json',
+        'Content-Type': 'application/*+json',
         AccessKey: settings.BUNNY_API_KEY
-      }
+      },
+      data: '{"title":"test"}'
     }
     )
-    .then(function (u_response) {
-      console.log(u_response.data);
+    .then(function (c_response) {
+      //upload start
+      axios.put(
+        `https://video.bunnycdn.com/library/59740/videos/${c_response.data.guid}`,
+      {
+        headers: {
+          Accept: 'application/json',
+          AccessKey: settings.BUNNY_API_KEY
+        }
+      }
+      )
+      .then(function (u_response) {
+        console.log(u_response.data);
+      }).catch(function (error) {
+        console.error(error);
+      });
+      //upload end
+
+      console.log(c_response.data);
     }).catch(function (error) {
       console.error(error);
     });
-    //upload end
-
-    console.log(c_response.data);
-  }).catch(function (error) {
-    console.error(error);
-  });
-};
+  };
 
 export default {
   name: "video-compressor",
