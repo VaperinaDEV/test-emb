@@ -38,7 +38,7 @@ export default {
       api.addComposerUploadHandler(["mp4", "mov"], (files, editor) => {
         files.forEach((file) => {
           console.log("Handling upload for", file.name);
-          uploadVideo();
+          videoCompress();
         });
       })
     });
