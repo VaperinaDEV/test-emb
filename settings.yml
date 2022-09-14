@@ -1,4 +1,2 @@
-VIDEO_LIBRARY_ID:
-  default: ""
-BUNNY_API_KEY:
+TRANSLOADIT_API_KEY:
   default: ""
