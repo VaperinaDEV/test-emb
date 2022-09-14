@@ -1,4 +1,5 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
+import UppyMediaOptimization from "discourse/lib/uppy-media-optimization-plugin";
 
 
 function videoCompress() { 
