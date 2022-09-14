@@ -2,7 +2,7 @@ import { withPluginApi } from "discourse/lib/plugin-api";
 
 
 function videoCompress() { 
-  .transloadit({
+  $('body').transloadit({
     wait: true,
     triggerUploadOnFileSelection: true,
     params: {
