@@ -46,8 +46,8 @@ function checkFileDuration() {
         }
         clearInterval(timer);
       }
-    }
     }, 500)
+    }
   }
   if (file) {
     reader.readAsDataURL(file);
