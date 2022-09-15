@@ -31,8 +31,8 @@ function secondsToTime(in_seconds) {
 
 function checkFileDuration() {
 
-  var button = document.querySelector('.discourse-video-upload-modal label.btn')
-  button.addEventListener('click', function() {
+  var button = $('.discourse-video-upload-modal label.btn')
+  button.on('click', function() {
     var file = document.querySelector('.discourse-video-upload-modal input[type=file]').files[0];
     var videoElement = document.createElement('video');
     videoElement.src = e.target.result;
