@@ -1,43 +1,52 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 
-function videoCreate() { 
-  const data = '{"title":"string"}';
+var videoMaxTime = "01:00"; //minutes:seconds   //video
 
-  const xhr = new XMLHttpRequest();
-  xhr.withCredentials = true;
+//for seconds to time
+function secondsToTime(in_seconds) {
 
-  xhr.addEventListener('readystatechange', function () {
-    if (this.readyState === this.DONE) {
-      console.log(this.responseText);
-    }
-  });
+  var time = '';
+  in_seconds = parseFloat(in_seconds.toFixed(2));
 
-  xhr.open('POST', 'https://video.bunnycdn.com/library/59740/videos');
-  xhr.setRequestHeader('Accept', 'application/json');
-  xhr.setRequestHeader('Content-Type', 'application/*+json');
-  xhr.setRequestHeader('AccessKey', settings.BUNNY_API_KEY);
+  var hours = Math.floor(in_seconds / 3600);
+  var minutes = Math.floor((in_seconds - (hours * 3600)) / 60);
+  var seconds = in_seconds - (hours * 3600) - (minutes * 60);
+  //seconds = Math.floor( seconds );
+  seconds = seconds.toFixed(0);
 
-  xhr.send(data);
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+  var time = minutes + ':' + seconds;
+
+  return time;
 
 }
 
-function videoUpload() {
-  const data = null;
+function checkFileDuration() {
 
-  const xhr = new XMLHttpRequest();
-  xhr.withCredentials = true;
-
-  xhr.addEventListener('readystatechange', function () {
-    if (this.readyState === this.DONE) {
-      console.log(this.responseText);
-    }
+  var file = document.querySelector('.discourse-video-upload-modal input[type=file]').files[0];
+  file.addEventListener('click', function() {
+    var videoElement = document.createElement('video');
+    videoElement.src = e.target.result;
+    var timer = setInterval(function() {
+      if (videoElement.readyState === 4) {
+        getTime = secondsToTime(videoElement.duration);
+        if (getTime > videoMaxTime) {
+          alert('1 minutes video only')
+          $('.discourse-video-upload-modal input[type=file]').val("");
+        }
+        clearInterval(timer);
+      }
+    }, 500)
   });
-
-  xhr.open('PUT', 'https://video.bunnycdn.com/library/59740/videos/videoId');
-  xhr.setRequestHeader('Accept', 'application/json');
-  xhr.setRequestHeader('AccessKey', settings.BUNNY_API_KEY);
-
-  xhr.send(data);
+  
 }
 
 export default {
@@ -45,13 +54,7 @@ export default {
 
   initialize() {
     withPluginApi("0.8.31", api => {
-      api.addComposerUploadHandler(["mp4", "mov"], (files, editor) => {
-        files.forEach((file) => {
-          console.log("Handling upload for", file.name);
-          videoCreate();
-          videoUpload();
-        });
-      });
+        checkFileDuration();
     });
   }
 };
