@@ -46,6 +46,11 @@ function checkFileDuration() {
       }
     }, 500)
   }
+  if (file) {
+    reader.readAsDataURL(file);
+  } else {
+    alert('nofile');
+  }
 }
 
 export default {
