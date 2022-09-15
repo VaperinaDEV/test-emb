@@ -59,7 +59,9 @@ export default {
   initialize() {
     withPluginApi("0.8.31", api => {
       var button = $('.discourse-video-upload-modal input[type=file]')
-      button.on('click', function(checkFileDuration));
+      button.on('click', function() {
+        checkFileDuration();
+      });
     });
   }
 };
