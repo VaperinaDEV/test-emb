@@ -30,11 +30,9 @@ function secondsToTime(in_seconds) {
 }
 
 function checkFileDuration() {
-  
+  var file = $('.discourse-video-upload-modal input[type=file]').files[0];
   var reader = new FileReader();
   reader.onload = function(e) {
-    if (file.type == "video/mp4" || file.type == "video/ogg" || file.type == "video/webm") {
-    var file = $('.discourse-video-upload-modal input[type=file]').files[0];
     var videoElement = document.createElement('video');
     videoElement.src = e.target.result;
     var timer = setInterval(function() {
@@ -47,7 +45,6 @@ function checkFileDuration() {
         clearInterval(timer);
       }
     }, 500)
-    }
   }
   if (file) {
     reader.readAsDataURL(file);
@@ -62,9 +59,7 @@ export default {
   initialize() {
     withPluginApi("0.8.31", api => {
       var button = $('.discourse-video-upload-modal input[type=file]')
-      button.on('click', function() {
-        checkFileDuration();
-      });
+      button.on('click', checkFileDuration());
     });
   }
 };
