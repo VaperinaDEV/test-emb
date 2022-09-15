@@ -44,7 +44,6 @@ function checkFileDuration() {
         clearInterval(timer);
       }
     }, 500)
-  });
   
 }
 
